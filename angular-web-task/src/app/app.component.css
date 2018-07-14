@@ -1,0 +1,53 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+}
+
+.logged-user {
+  margin-right: 10px;
+}
+
+.my-padding {
+  padding-top: 20px;
+}
+
+.profile {
+  margin-right: 40px;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #428bca;
+    background-image: none;
+    cursor: pointer;
+}
+
+.resizable {
+  box-sizing: border-box;
+  position: relative;
+  width: 26px;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.resize-handle {
+  height: 20px;
+  width: 25px;
+  position: absolute;
+  bottom: 55%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.resizable-button {
+  height: auto;
+}

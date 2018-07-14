@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h1>Discipline</h1>
+      Name: {{discipline.name}} <br>
+      Code: {{discipline.code}} <br>
+      Description: {{discipline.description}} <br>
+      Department: {{discipline.department.name}} <br>
+      Education type: {{discipline.educationType}} <br>
+      Education degree: {{discipline.educationDegree}} <br>
+      Number of semesters: {{discipline.numberOfSemesters}} <br>
+      <br>
+      <div *ngIf="authService.isAdmin()">
+        <div class="row">
+          <div class="col-sm-5">
+            <h4>add/remove subject:</h4>
+          </div>
+          <div class="col-sm-5">
+            <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0"
+                           placeholder="Subject name" (selected)="onSelected($event)"
+                           openOnClick="true">
+            </ng2-completer>
+          </div>
+          <div class="col-sm-2">
+            <button type="reset" class="btn btn-primary" *ngIf="authService.isAdmin()"
+                    (click)="addSelectedItem(); disciplineEditForm.reset()" [disabled]="selectedSemester == -1">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-5">
+            <h4>Semester: </h4>
+          </div>
+          <div class="col-sm-7">
+            <form (ngSubmit)="processForm()" #disciplineEditForm="ngForm">
+              <div class="form-group">
+                <select id="semester" name="semesterSelector"
+                        [(ngModel)]="selectedSemester" class="form-control"
+                        appDropdownRequired #selectRequiredControl="ngModel" name="selectedSemester">
+                  <option value="-1" selected disabled>Select semester</option>
+                  <option *ngFor="let i of semesters" [value]="i + 1">
+                    {{ i + 1 }}
+                  </option>
+                </select>
+                <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                         Select semester from the dropdown menu.
+                      </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <button type="reset" class="btn btn-primary" routerLink="/disciplines" *ngIf="authService.isAdmin()">
+              <i class="fa fa-list" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="col-sm-7"></div>
+          <div class="col-sm-3">
+            <button class="btn btn-primary" *ngIf="authService.isAdmin() && arrayChanged === true"
+                    (click)="saveChanges()">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-6">
+      <h1>Subects</h1>
+      <div *ngFor = "let i of semesters">
+        <accordion>
+          <accordion-group heading="Semester {{ i + 1 }}" [isDisabled]="!(discipline.subjects | filterBySemester: i + 1)?.length >= 1">
+
+            <div class="row" *ngFor="let subject of discipline.subjects | filterBySemester: i + 1">
+              <div class="col-sm-7 subject-distance">
+                <span>
+                  {{subject.name}}
+                  <br>
+                </span>
+              </div>
+              <div class="col-sm-5">
+                <button type="reset" class="btn btn-danger" *ngIf="authService.isAdmin()" (click)="removeSelectedItem(subject)">
+                  <i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+
+          </accordion-group>
+        </accordion>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>

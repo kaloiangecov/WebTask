@@ -1,0 +1,118 @@
+<div class="container">
+  <form (ngSubmit)="processForm()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter username"
+             [(ngModel)]="user.username" name="username" required minlength="3" #username="ngModel"
+             appUsernameExists>
+
+      <div *ngIf="username.invalid && (username.dirty || username.touched)"
+            class="alert alert-danger">
+        <div *ngIf="username.errors.required">
+           Username is required.
+        </div>
+       <div *ngIf="username.errors.minlength">
+           Username must be at least 3 characters long.
+       </div>
+       <div *ngIf="username.errors?.usernameExists">
+           Username already exists.
+       </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+             placeholder="Enter email" [(ngModel)]="user.email" name="email"
+             required minlength="8" email="true" #email="ngModel" appEmailExists>
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors.required">
+            Email is required.
+        </div>
+        <div *ngIf="email.errors.valid">
+            Invalid email address
+        </div>
+        <div *ngIf="email.errors.minlength">
+            Email must be at least 8 characters long.
+        </div>
+        <div *ngIf="!email.errors.required && !email.errors.minlength && email.errors?.email">
+            Invalid email address
+        </div>
+        <div *ngIf="email.errors?.emailExists">
+            Email already exists.
+        </div>
+      </div>
+    </div>
+
+    <div ngModelGroup="passwordGroup" class="MyGroup">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password"
+               [(ngModel)]="user.password" name="password" required minlength="6" #password="ngModel"
+               (input)="confirmPasswordControl.control.updateValueAndValidity()">
+
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+             Password is required.
+          </div>
+         <div *ngIf="password.errors.minlength">
+             Password must be at least 6 characters long.
+         </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Re-type password"
+               [(ngModel)]="confirmPassword" #confirmPasswordControl="ngModel" name="confirmPassword"
+               [disabled]="password.errors" required appPasswordMatch>
+
+        <div *ngIf="confirmPasswordControl.invalid && (confirmPasswordControl.dirty || confirmPasswordControl.touched)"
+              class="alert alert-danger">
+              <div *ngIf="confirmPasswordControl.errors?.passwordMissmatch">
+                 Password and confirm password does not match.
+              </div>
+        </div>
+      </div>
+
+      <div class="form-group" *ngIf="authService.isAdmin()">
+        <label for="roleSelector">Role</label>
+        <select id="role" name="roleSelector"
+                [(ngModel)]="selectedRole" class="form-control selector"
+                appDropdownRequired #selectRequiredControl="ngModel" name="selectedRole">
+          <option value="-1" selected>Select role</option>
+
+          <option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </option>
+        </select>
+        <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+              class="alert alert-danger">
+              <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                 Select a role from the dropdown menu.
+              </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+      </div>
+      <div class="col-sm-8">
+
+      </div>
+      <div class="col-sm-1">
+        <button type="reset" class="btn btn-primary" routerLink="/users" *ngIf="authService.isAdmin()">
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="col-sm-1">
+        <button type="reset" class="btn btn-primary" (click)="userForm.reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>

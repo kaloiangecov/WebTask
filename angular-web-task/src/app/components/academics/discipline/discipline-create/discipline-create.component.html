@@ -1,0 +1,150 @@
+<div class="container">
+  <h1>Discipline</h1>
+  <form (ngSubmit)="processForm()" #disciplineForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Name"
+             [(ngModel)]="discipline.name" name="name" required minlength="5" #name="ngModel">
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+        <div *ngIf="name.errors.required">
+           Discipline name is required.
+        </div>
+       <div *ngIf="name.errors.minlength">
+           Discipline name must be at least 5 characters long.
+       </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="code">Code</label>
+      <input type="text" class="form-control" id="code" placeholder="code"
+             [(ngModel)]="discipline.code" name="code" required minlength="3" #code="ngModel">
+
+      <div *ngIf="code.invalid && (code.dirty || code.touched)"
+            class="alert alert-danger">
+        <div *ngIf="code.errors.required">
+           Code is required.
+        </div>
+       <div *ngIf="code.errors.minlength">
+           Code must be at least 5 characters long.
+       </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group" *ngIf="authService.isAdmin()">
+          <label for="departmentSelector">Department</label>
+          <select id="department" name="departmentSelector"
+                  [(ngModel)]="selectedDepartment" class="form-control" style="width: 250px"
+                  appDropdownRequired #selectRequiredControl="ngModel" name="selectedDepartment">
+            <option value="-1" selected disabled>Select department</option>
+            <option *ngFor="let department of departments" [value]="department.id">
+              {{ department.name }}
+            </option>
+          </select>
+          <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                   Select department from the dropdown menu.
+                </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group" *ngIf="authService.isAdmin()">
+          <label for="educationTypeSelector">Education Type</label>
+          <select id="educationType" name="educationTypeSelector"
+                  [(ngModel)]="selectedEducationType" class="form-control" style="width: 250px"
+                  appDropdownRequired #selectRequiredControl="ngModel" name="selectedEducationType">
+            <option value="-1" selected disabled>Select education type</option>
+            <option value="REGULAR">REGULAR</option>
+            <option value="DISTANCE">DISTANCE</option>
+          </select>
+          <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                   Select an education type from the dropdown menu.
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group" *ngIf="authService.isAdmin()">
+          <label for="educationDegreeSelector">Education Degree</label>
+          <select id="educationDegree" name="educationDegreeSelector"
+                  [(ngModel)]="selectedEducationDegree" class="form-control" style="width: 250px"
+                  appDropdownRequired #selectRequiredControl="ngModel" name="selectedEducationDegree">
+            <option value="-1" selected disabled>Select education degree</option>
+            <option value="BACHELOR">BACHELOR</option>
+            <option value="MASTERS">MASTERS</option>
+            <option value="DOCTORATE">DOCTORATE</option>
+          </select>
+          <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                   Select an education degree from the dropdown menu.
+                </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="form-group" *ngIf="authService.isAdmin()">
+          <label for="semestersSelector">Number of semesters</label>
+          <select id="numberOfSemesters" name="semestersSelector"
+                  [(ngModel)]="selectedNumberOfSemesters" class="form-control" style="width: 250px"
+                  appDropdownRequired #selectRequiredControl="ngModel" name="selectedNumberOfSemesters">
+            <option value="-1" selected disabled>Select number of semesters</option>
+            <option *ngFor="let i of semesters" [value]="i + 1">
+              {{ i + 1 }}
+            </option>
+          </select>
+          <div *ngIf="selectRequiredControl.invalid && (selectRequiredControl.dirty || selectRequiredControl.touched)"
+                class="alert alert-danger">
+                <div *ngIf="selectRequiredControl.errors?.nothingSelected">
+                   Select number of semesters from the dropdown menu.
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="code">Description</label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Enter description"
+                [(ngModel)]="discipline.description" name="description" #description="ngModel">
+
+      </textarea>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!disciplineForm.valid">Submit</button>
+      </div>
+      <div class="col-sm-8">
+
+      </div>
+      <div class="col-sm-1">
+        <button type="reset" class="btn btn-primary" routerLink="/disciplines" *ngIf="authService.isAdmin()">
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </button>
+
+      </div>
+      <div class="col-sm-1">
+        <button type="reset" class="btn btn-primary" (click)="disciplineForm.reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>

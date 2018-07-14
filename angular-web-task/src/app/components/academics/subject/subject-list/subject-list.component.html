@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <section>
+        <header class="header">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Subjects</h1>
+            </div>
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" (keyup)="onSearchType($event.target.value)" placeholder="Search..."/>
+            </div>
+          </div>
+        </header>
+      </section>
+      <section class="main">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Credits</th>
+            <th>Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let subject of subjects">
+            <th scope="row">{{subject.code}}</th>
+            <td>{{subject.name}}</td>
+            <td>{{subject.credits}}</td>
+            <td>
+              <button type="button" class="btn btn-info" (click)="viewDetails(subject)">Details</button>
+              <button type="button" class="btn btn-success" (click)="edit(subject)">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="delete(subject)">Delete</button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+  <hr>
+  <ngb-pagination [collectionSize]="maxPageSize" [(page)]="page"
+                  [maxSize]="5" [rotate]="true" [ellipses]="false"
+                  [boundaryLinks]="true" class="d-flex justify-content-center"
+                  (pageChange)="getSubjectsPage(page)">
+  </ngb-pagination>
+  <div class="add-btn">
+    <button type="button" class="btn btn-primary" (click)="create()">New Subject</button>
+  </div>
+</div>

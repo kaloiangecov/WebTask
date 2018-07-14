@@ -1,0 +1,104 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="wrapper">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="/login" routerLinkActive="active">Web Task</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" routerLink="/home" routerLinkActive="active">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active" *ngIf="activeUser?.role.name == 'ADMIN'">Users</a>
+      </div>
+    </div>
+
+    <form class="form-inline my-2 my-lg-0" *ngIf="!authService.checkIfLogged()">
+      <button class="btn btn-primary my-2 my-sm-0" (click)="login()">Login</button>
+    </form>
+
+    <form class="form-inline my-2 my-lg-0" *ngIf="authService.checkIfLogged()">
+      <div class="btn-group profile" dropdown>
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-basic">
+          {{ activeUser?.username }} <span class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-basic">
+          <li role="menuitem hoverable"><a class="dropdown-item" (click)="logout()">Logout</a></li>
+          <li role="menuitem hoverable"><a class="dropdown-item" (click)="editProfile()">Edit profile</a></li>
+        </ul>
+      </div>
+    </form>
+  </nav>
+
+  <div  *ngIf="authService.checkIfLogged()"
+        class="resizable bg-primary"
+        mwlResizable
+        [ngStyle]="style"
+        [validateResize]="validate"
+        [resizeSnapGrid]="{left: 5, right: 5}"
+        [enableGhostResize]="true"
+        [resizeEdges]="{right: true}"
+        (resizeEnd)="onResizeEnd($event)">
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="btn-group" dropdown *ngIf="resizableWidth > 55">
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-dark dropdown-toggle"
+                  aria-controls="dropdown-basic" *ngIf="resizableWidth < 140 && resizableWidth > 55">
+            A <span class="caret"></span>
+          </button>
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-dark dropdown-toggle"
+                  aria-controls="dropdown-basic" *ngIf="resizableWidth > 140">
+            Academics <span class="caret"></span>
+          </button>
+
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" routerLink="/faculties">Faculties</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/departments">Departments</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/disciplines">Disciplines</a></li>
+            <li role="menuitem"><a class="dropdown-item" routerLink="/subjects">Subjects</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="btn-group" dropdown *ngIf="resizableWidth > 50">
+          <button id="button-basic" dropdownToggle type="button" class="btn btn-dark dropdown-toggle"
+                  aria-controls="dropdown-basic">
+            Something else <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" href="#">Faculties</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Departments</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Disciplines</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Subjects</a>
+            </li>
+          </ul>
+        </div> -->
+
+        <img
+        src="../assets/images/right-arrow.png"
+        class="resize-handle"
+        mwlResizeHandle
+        [resizeEdges]="{right: true}">
+  </div>
+
+  <div class="container my-padding" [ngStyle]="containerStyle">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+
+
+<!-- <footer class="footer bg-dark">
+
+</footer> -->

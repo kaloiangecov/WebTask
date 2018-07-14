@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <section>
+        <header class="header">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Departments</h1>
+            </div>
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" (keyup)="onSearchType($event.target.value)" placeholder="Search..."/>
+            </div>
+          </div>
+        </header>
+      </section>
+      <section class="main">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Faculty</th>
+            <th>Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let department of departments">
+            <th scope="row">{{department.code}}</th>
+            <td>{{department.name}}</td>
+            <td>{{department.faculty.name}}</td>
+            <td>
+              <button type="button" class="btn btn-info" (click)="viewDetails(department)">Details</button>
+              <button type="button" class="btn btn-success" (click)="edit(department)">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="delete(department)">Delete</button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+  <hr>
+  <ngb-pagination [collectionSize]="maxPageSize" [(page)]="page"
+                  [maxSize]="5" [rotate]="true" [ellipses]="false"
+                  [boundaryLinks]="true" class="d-flex justify-content-center"
+                  (pageChange)="getDepartmentsPage(page)">
+  </ngb-pagination>
+  <div class="add-btn">
+    <button type="button" class="btn btn-primary" (click)="create()">New Department</button>
+  </div>
+</div>

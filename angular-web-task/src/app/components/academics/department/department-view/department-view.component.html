@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Department</h1>
+  Name: {{department.name}} <br>
+  Code: {{department.code}} <br>
+  Description: {{department.description}} <br>
+  Faculty: {{department.faculty.name}} <br>
+  <br>
+  <button type="reset" class="btn btn-primary" routerLink="/departments" *ngIf="authService.isAdmin()">
+    <i class="fa fa-list" aria-hidden="true"></i>
+  </button>
+</div>

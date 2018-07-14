@@ -1,0 +1,70 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+angular-web-task/dist
+angular-web-task/dist-server
+angular-web-task/tmp
+angular-web-task/out-tsc
+
+# dependencies
+angular-web-task/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# e2e
+angular-web-task/e2e/*.js
+angular-web-task/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
+WebTask/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+WebTask/nbproject/private/
+WebTask//build/
+WebTask//nbbuild/
+WebTask//dist/
+WebTask//nbdist/
+WebTask//.nb-gradle/

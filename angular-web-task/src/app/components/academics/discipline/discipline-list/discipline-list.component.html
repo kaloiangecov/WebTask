@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <section>
+        <header class="header">
+          <div class="row">
+            <div class="col-md-4">
+              <h1>Disciplines</h1>
+            </div>
+            <div class="col-md-5">
+
+            </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" (keyup)="onSearchType($event.target.value)" placeholder="Search..."/>
+            </div>
+          </div>
+        </header>
+      </section>
+      <section class="main">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Education Type</th>
+            <th>Education Degree</th>
+            <th>Operations</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let discipline of disciplines">
+            <th scope="row">{{discipline.code}}</th>
+            <td>{{discipline.name}}</td>
+            <td>{{discipline.department.name}}</td>
+            <td>{{discipline.educationType}}</td>
+            <td>{{discipline.educationDegree}}</td>
+            <td>
+              <button type="button" class="btn btn-info" (click)="viewDetails(discipline)">Details</button>
+              <button type="button" class="btn btn-success" (click)="edit(discipline)">Edit</button>
+              <button type="button" class="btn btn-danger" (click)="delete(discipline)">Delete</button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+  <hr>
+  <ngb-pagination [collectionSize]="maxPageSize" [(page)]="page"
+                  [maxSize]="5" [rotate]="true" [ellipses]="false"
+                  [boundaryLinks]="true" class="d-flex justify-content-center"
+                  (pageChange)="getDisciplinesPage(page)">
+  </ngb-pagination>
+  <div class="add-btn">
+    <button type="button" class="btn btn-primary" (click)="create()">New Discipline</button>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Subject</h1>
+  Name: {{subject.name}} <br>
+  Code: {{subject.code}} <br>
+  Description: {{subject.description}} <br>
+  Credits: {{subject.credits}} <br>
+  <br>
+  <button type="reset" class="btn btn-primary" routerLink="/subjects" *ngIf="authService.isAdmin()">
+    <i class="fa fa-list" aria-hidden="true"></i>
+  </button>
+</div>

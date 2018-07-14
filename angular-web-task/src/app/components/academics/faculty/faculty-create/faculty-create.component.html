@@ -1,0 +1,66 @@
+<div class="container">
+  <h1>Faculty</h1>
+  <form (ngSubmit)="processForm()" #facultyForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Name"
+             [(ngModel)]="faculty.name" name="name" required minlength="5" #name="ngModel">
+
+      <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">
+        <div *ngIf="name.errors.required">
+           Faculty name is required.
+        </div>
+       <div *ngIf="name.errors.minlength">
+           Faculty name must be at least 3 characters long.
+       </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="code">Code</label>
+      <input type="text" class="form-control" id="code" placeholder="code"
+             [(ngModel)]="faculty.code" name="code" required minlength="3" #code="ngModel">
+
+      <div *ngIf="code.invalid && (code.dirty || code.touched)"
+            class="alert alert-danger">
+        <div *ngIf="code.errors.required">
+           Code is required.
+        </div>
+       <div *ngIf="code.errors.minlength">
+           Code must be at least 3 characters long.
+       </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="code">Description</label>
+
+      <textarea class="form-control" id="description" rows="3" placeholder="Enter description"
+                [(ngModel)]="faculty.description" name="description">
+
+      </textarea>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" [disabled]="!facultyForm.valid">Submit</button>
+      </div>
+      <div class="col-sm-8">
+
+      </div>
+      <div class="col-sm-1">
+        <button class="btn btn-primary" routerLink="/faculties">
+          <i class="fa fa-list" aria-hidden="true"></i>
+        </button>
+
+      </div>
+      <div class="col-sm-1">
+        <button type="reset" class="btn btn-primary" (click)="facultyForm.reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>
