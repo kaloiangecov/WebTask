@@ -12,12 +12,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
+
+
 import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
-@Transactional
 public class UserServiceTest extends WebTaskApplicationTests {
 
     @Autowired
@@ -31,6 +31,7 @@ public class UserServiceTest extends WebTaskApplicationTests {
     public void init(){
         MockitoAnnotations.initMocks(this);
     }
+
 
     @Test
     public void testFindAll() {
