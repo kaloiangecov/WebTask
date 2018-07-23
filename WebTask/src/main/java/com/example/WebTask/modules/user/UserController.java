@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- *
- * @author kaloi
- */
+
 @RestController
-//@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     private UserService userService;
