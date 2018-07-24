@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- *
- * @author kaloi
- */
+
 @RestController
-//@CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
 
     private UserService userService;
@@ -142,6 +138,7 @@ public class UserController {
     }
 
     @PostMapping(value="/signup")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public User saveUser(@RequestBody User user, @RequestParam(name = "id", required = false) Long id){
         return userService.create(user, id);
     }
