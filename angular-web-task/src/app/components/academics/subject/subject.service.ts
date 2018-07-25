@@ -14,28 +14,23 @@ export class SubjectService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.http.get(this.apiUrl).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl);
   }
 
   findById(id: number): Observable<any> {
-    return this.http.get(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/' + id);
   }
 
   save(subject: Subject): Observable<any> {
-    return this.http.post(this.apiUrl, subject).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.post(this.apiUrl, subject);
   }
 
   deleteById(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.delete(this.apiUrl + '/' + id);
   }
 
   update(subject: Subject): Observable<any> {
-    return this.http.put(this.apiUrl + '/' + subject.id, subject).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.put(this.apiUrl + '/' + subject.id, subject);
   }
 
   findAllSubjectsPageable(page: number, elementsPerPage: number, searchTerm?: string): Observable<any> {
@@ -44,7 +39,6 @@ export class SubjectService {
       searchParam = '&searchTerm=' + searchTerm;
     }
     return this.http.get(this.apiUrl + '/page?page=' + page +
-                        '&elements_per_page=' + elementsPerPage + searchParam).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+                        '&elements_per_page=' + elementsPerPage + searchParam);
   }
 }

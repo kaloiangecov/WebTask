@@ -28,8 +28,7 @@ export class RegisterComponent implements OnInit {
     this.userService.signup(this.user).subscribe(
       result => {
         this.router.navigate(['login']);
-      },
-      error => console.error(error));
+      });
   }
 
 }

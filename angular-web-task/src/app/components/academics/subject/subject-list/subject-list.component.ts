@@ -27,11 +27,7 @@ export class SubjectListComponent implements OnInit {
         result => {
           this.maxPageSize = +(result.totalPages + '0');
           this.subjects = result.content;
-        },
-        err => {
-          console.log(err);
-        }
-      );
+        });
     });
   }
 
@@ -46,11 +42,7 @@ export class SubjectListComponent implements OnInit {
       result => {
         this.maxPageSize = +(result.totalPages + '0');
         this.subjects = result.content;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   edit(subject: Subject) {
@@ -63,11 +55,7 @@ export class SubjectListComponent implements OnInit {
     this.subjectService.deleteById(subject.id).subscribe(
       result => {
         this.subjects.splice(this.subjects.indexOf(subject), 1);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   viewDetails(subject: Subject) {

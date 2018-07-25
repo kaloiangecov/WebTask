@@ -83,14 +83,12 @@ export class DisciplineCreateComponent implements OnInit {
       this.disciplineService.save(this.discipline).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     } else {
       this.disciplineService.update(this.discipline).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     }
 
   }

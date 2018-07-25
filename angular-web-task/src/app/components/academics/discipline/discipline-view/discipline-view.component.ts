@@ -89,8 +89,7 @@ export class DisciplineViewComponent implements OnInit {
         this.discipline = discipline;
         this.selectedSemester = -1;
         alert('changes made');
-      },
-      error => console.error(error));
+      });
   }
 
   filterArray(disciplineSubjects: Subject[], subjects: Subject[]): Subject[] {

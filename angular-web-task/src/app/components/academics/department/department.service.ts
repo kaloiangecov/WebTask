@@ -14,28 +14,23 @@ export class DepartmentService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.http.get(this.apiUrl).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl);
   }
 
   findById(id: number): Observable<any> {
-    return this.http.get(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/' + id);
   }
 
   save(department: Department): Observable<any> {
-    return this.http.post(this.apiUrl, department).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.post(this.apiUrl, department);
   }
 
   deleteById(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.delete(this.apiUrl + '/' + id);
   }
 
   update(department: Department): Observable<any> {
-    return this.http.put(this.apiUrl + '/' + department.id, department).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.put(this.apiUrl + '/' + department.id, department);
   }
 
   findAllDepartmentsPageable(page: number, elementsPerPage: number, searchTerm?: string): Observable<any> {
@@ -44,7 +39,6 @@ export class DepartmentService {
       searchParam = '&searchTerm=' + searchTerm;
     }
     return this.http.get(this.apiUrl + '/page?page=' + page +
-                        '&elements_per_page=' + elementsPerPage + searchParam).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+                        '&elements_per_page=' + elementsPerPage + searchParam);
   }
 }

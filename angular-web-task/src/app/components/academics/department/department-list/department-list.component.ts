@@ -27,11 +27,7 @@ export class DepartmentListComponent implements OnInit {
         result => {
           this.maxPageSize = +(result.totalPages + '0');
           this.departments = result.content;
-        },
-        err => {
-          console.log(err);
-        }
-      );
+        });
     });
   }
 
@@ -46,11 +42,7 @@ export class DepartmentListComponent implements OnInit {
       result => {
         this.maxPageSize = +(result.totalPages + '0');
         this.departments = result.content;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   edit(department: Department) {
@@ -63,11 +55,7 @@ export class DepartmentListComponent implements OnInit {
     this.departmentService.deleteById(department.id).subscribe(
       result => {
         this.departments.splice(this.departments.indexOf(department), 1);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   viewDetails(department: Department) {

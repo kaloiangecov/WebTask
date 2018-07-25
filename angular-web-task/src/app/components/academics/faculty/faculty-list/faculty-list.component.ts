@@ -27,11 +27,7 @@ export class FacultyListComponent implements OnInit {
         result => {
           this.maxPageSize = +(result.totalPages + '0');
           this.faculties = result.content;
-        },
-        err => {
-          console.log(err);
-        }
-      );
+        });
     });
   }
 
@@ -46,11 +42,7 @@ export class FacultyListComponent implements OnInit {
       result => {
         this.maxPageSize = +(result.totalPages + '0');
         this.faculties = result.content;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   edit(faculty: Faculty) {
@@ -63,11 +55,7 @@ export class FacultyListComponent implements OnInit {
     this.facultyService.deleteById(faculty.id).subscribe(
       result => {
         this.faculties.splice(this.faculties.indexOf(faculty), 1);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   viewDetails(faculty: Faculty) {

@@ -14,7 +14,6 @@ export class RoleService {
   }
 
   findAll(): Observable<any>  {
-    return this.http.get(this.apiUrl).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl);
   }
 }

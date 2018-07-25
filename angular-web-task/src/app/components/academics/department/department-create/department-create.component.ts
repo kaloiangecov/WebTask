@@ -68,14 +68,12 @@ export class DepartmentCreateComponent implements OnInit {
       this.departmentService.save(this.department).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     } else {
       this.departmentService.update(this.department).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     }
 
   }

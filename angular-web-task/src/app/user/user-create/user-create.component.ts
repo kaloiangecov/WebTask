@@ -70,14 +70,12 @@ export class UserCreateComponent implements OnInit {
       this.userService.saveUser(this.user).subscribe(
         result => {
           this.gotoUserList();
-        },
-        error => console.error(error));
+        });
     } else {
       this.userService.updateUser(this.user).subscribe(
         result => {
           this.gotoUserList();
-        },
-        error => console.error(error));
+        });
     }
 
   }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResizableModule } from 'angular-resizable-element';
 
@@ -24,7 +24,7 @@ import {
 } from './shared/authentication/guards/edit-personal-guard.service';
 import { AdminGuardService as AdminGuard } from './shared/authentication/guards/admin-guard.service';
 import { AcademicsModule } from './components/academics/academics.module';
-
+import { GlobalErrorHandler } from './shared/error-handling/global-error-handler';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,9 @@ import { AcademicsModule } from './components/academics/academics.module';
   ],
   providers: [UserService, RoleService, AuthService, TokenStorage, AuthGuard, EditGuard,
               AdminGuard,
-              { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
+              { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+              { provide: ErrorHandler, useClass: GlobalErrorHandler }
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

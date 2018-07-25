@@ -13,38 +13,31 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.http.get(this.apiUrl).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl);
   }
 
   findById(id: number): Observable<any> {
-    return this.http.get(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/' + id);
   }
 
   saveUser(user: User): Observable<any> {
-    return this.http.post(this.apiUrl, user).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.post(this.apiUrl, user);
   }
 
   signup(user: User): Observable<any> {
-    return this.http.post('http://localhost:8080/WebTask/signup', user).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.post('http://localhost:8080/WebTask/signup', user);
   }
 
   deleteUserById(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.delete(this.apiUrl + '/' + id);
   }
 
   updateUser(user: User): Observable<any> {
-    return this.http.put(this.apiUrl + '/' + user.id, user).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.put(this.apiUrl + '/' + user.id, user);
   }
 
   countUsers(): Observable<any> {
-    return this.http.get(this.apiUrl + '/count').pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/count');
   }
 
   findAllUsersPageable(page: number, elementsPerPage: number, searchTerm?: string): Observable<any> {
@@ -53,22 +46,18 @@ export class UserService {
       searchParam = '&searchTerm=' + searchTerm;
     }
     return this.http.get(this.apiUrl + '/page?page=' + page +
-                        '&elements_per_page=' + elementsPerPage + searchParam).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+                        '&elements_per_page=' + elementsPerPage + searchParam);
   }
 
   usernameExists(username: string, id): Observable<any> {
-    return this.http.get(this.apiUrl + '/exists/username?username=' + username + '&id=' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/exists/username?username=' + username + '&id=' + id);
   }
 
   emailExists(email: string, id): Observable<any> {
-    return this.http.get(this.apiUrl + '/exists/email?email=' + email + '&id=' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/exists/email?email=' + email + '&id=' + id);
   }
 
   findByUsername(username: string): Observable<any> {
-    return this.http.get(this.apiUrl + '/username/' + username).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/username/' + username);
   }
 }

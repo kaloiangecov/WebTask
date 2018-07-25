@@ -27,9 +27,6 @@ export class UserListComponent implements OnInit {
         result => {
           this.maxPageSize = +(result.totalPages + '0');
           this.users = result.content;
-        },
-        err => {
-          console.log(err);
         }
       );
     });
@@ -46,9 +43,6 @@ export class UserListComponent implements OnInit {
       result => {
         this.maxPageSize = +(result.totalPages + '0');
         this.users = result.content;
-      },
-      err => {
-        console.log(err);
       }
     );
   }
@@ -63,9 +57,6 @@ export class UserListComponent implements OnInit {
     this.userService.deleteUserById(user.id).subscribe(
       result => {
         this.users.splice(this.users.indexOf(user), 1);
-      },
-      err => {
-        console.log(err);
       }
     );
   }

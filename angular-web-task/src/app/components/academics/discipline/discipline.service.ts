@@ -16,28 +16,23 @@ export class DisciplineService {
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.http.get(this.apiUrl).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl);
   }
 
   findById(id: number): Observable<any> {
-    return this.http.get(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.get(this.apiUrl + '/' + id);
   }
 
   save(discipline: Discipline): Observable<any> {
-    return this.http.post(this.apiUrl, discipline).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.post(this.apiUrl, discipline);
   }
 
   deleteById(id: number): Observable<any> {
-    return this.http.delete(this.apiUrl + '/' + id).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.delete(this.apiUrl + '/' + id);
   }
 
   update(discipline: Discipline): Observable<any> {
-    return this.http.put(this.apiUrl + '/' + discipline.id, discipline).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+    return this.http.put(this.apiUrl + '/' + discipline.id, discipline);
   }
 
   findAllDisciplinesPageable(page: number, elementsPerPage: number, searchTerm?: string): Observable<any> {
@@ -46,7 +41,6 @@ export class DisciplineService {
       searchParam = '&searchTerm=' + searchTerm;
     }
     return this.http.get(this.apiUrl + '/page?page=' + page +
-                        '&elements_per_page=' + elementsPerPage + searchParam).pipe(
-      catchError((error: any) => observableThrowError(error.json().error || 'Server error')));
+                        '&elements_per_page=' + elementsPerPage + searchParam);
   }
 }

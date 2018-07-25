@@ -28,11 +28,7 @@ export class DisciplineListComponent implements OnInit {
         result => {
           this.maxPageSize = +(result.totalPages + '0');
           this.disciplines = result.content;
-        },
-        err => {
-          console.log(err);
-        }
-      );
+        });
     });
   }
 
@@ -47,11 +43,7 @@ export class DisciplineListComponent implements OnInit {
       result => {
         this.maxPageSize = +(result.totalPages + '0');
         this.disciplines = result.content;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   edit(discipline: Discipline) {
@@ -64,11 +56,7 @@ export class DisciplineListComponent implements OnInit {
     this.disciplineService.deleteById(discipline.id).subscribe(
       result => {
         this.disciplines.splice(this.disciplines.indexOf(discipline), 1);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+      });
   }
 
   viewDetails(discipline: Discipline) {

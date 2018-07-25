@@ -52,14 +52,12 @@ export class SubjectCreateComponent implements OnInit {
       this.subjectService.save(this.subject).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     } else {
       this.subjectService.update(this.subject).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     }
 
   }

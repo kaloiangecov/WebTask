@@ -52,14 +52,12 @@ export class FacultyCreateComponent implements OnInit {
       this.facultyService.save(this.faculty).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     } else {
       this.facultyService.update(this.faculty).subscribe(
         result => {
           this.navigateToList();
-        },
-        error => console.error(error));
+        });
     }
 
   }
