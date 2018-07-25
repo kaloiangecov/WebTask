@@ -8,11 +8,10 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "DEPARTMENT_ID")
 public class Department extends Academics {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "FACULTY_ID", nullable = false)

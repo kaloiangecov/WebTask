@@ -10,11 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@PrimaryKeyJoinColumn(name = "SUBJECT_ID")
 public class Subject extends Academics {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @NotBlank(message = "Enter credits")
     private String credits;
 
@@ -22,12 +20,6 @@ public class Subject extends Academics {
                cascade = CascadeType.ALL)
     private Set<DisciplineSubject> disciplineSubjects = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getCredits() {
         return credits;
