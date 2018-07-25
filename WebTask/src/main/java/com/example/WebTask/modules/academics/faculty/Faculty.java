@@ -7,10 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "FACULTY_ID")
 public class Faculty extends Academics {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
 }

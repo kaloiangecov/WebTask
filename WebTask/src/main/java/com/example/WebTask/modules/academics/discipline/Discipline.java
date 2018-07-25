@@ -12,11 +12,9 @@ import java.util.Set;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name = "DISCIPLINE_ID")
 public class Discipline extends Academics {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "DEPARTMENT_ID", nullable = false)
@@ -38,13 +36,6 @@ public class Discipline extends Academics {
                fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
     private Set<DisciplineSubject> disciplineSubjects = new HashSet<>();
-
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public Department getDepartment() {
         return department;

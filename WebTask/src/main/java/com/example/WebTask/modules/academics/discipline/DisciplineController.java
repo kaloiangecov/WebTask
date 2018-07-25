@@ -40,8 +40,9 @@ public class DisciplineController {
 
     @PostMapping(value = "disciplines")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Object> createDiscipline(@RequestBody @Valid DisciplineDTO discipline,
-                                                BindingResult bindingResult) {
+    public ResponseEntity<Object> createDiscipline(
+                                        @RequestBody @Valid DisciplineDTO discipline,
+                                        BindingResult bindingResult) {
         errors = new HashMap<>();
 
         if (bindingResult.hasErrors()) {
@@ -56,8 +57,8 @@ public class DisciplineController {
     @PutMapping(value = "disciplines/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Object> updateDiscipline(@PathVariable Long id,
-                                                @RequestBody @Valid DisciplineDTO discipline,
-                                                BindingResult bindingResult) throws Exception {
+                                                   @RequestBody @Valid DisciplineDTO discipline,
+                                                   BindingResult bindingResult) throws Exception {
         errors = new HashMap<>();
 
         if (bindingResult.hasErrors()) {

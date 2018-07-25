@@ -34,11 +34,11 @@ public class DisciplineService {
     }
 
     public DisciplineDTO create(DisciplineDTO disciplineDTO) {
-        return convertToDto(disciplineRepository.save(convertFromDto(disciplineDTO)));
+        return convertToDto(disciplineRepository.save(convertFromDto(disciplineDTO, null)));
     }
 
     public DisciplineDTO update(DisciplineDTO disciplineDTO, Long id) throws Exception{
-        return convertToDto(convertFromDto(disciplineDTO));
+        return convertToDto(convertFromDto(disciplineDTO, id));
     }
 
     public Discipline delete(Long id) throws Exception{
@@ -94,10 +94,10 @@ public class DisciplineService {
 
         return disciplineDTOs;
     }
-    private Discipline convertFromDto(DisciplineDTO disciplineDTO) {
+    private Discipline convertFromDto(DisciplineDTO disciplineDTO, Long id) {
         Discipline discipline = new Discipline();
-        if (disciplineDTO.getId() != null) {
-            discipline = disciplineRepository.findOne(disciplineDTO.getId());
+        if (id != null) {
+            discipline = disciplineRepository.findOne(id);
             discipline.setDisciplineSubjects(disciplineDTO.getDisciplineSubjects(discipline));
             removeUnreferencedLinks(discipline);
         } else {
@@ -108,7 +108,7 @@ public class DisciplineService {
         discipline.setEducationType(disciplineDTO.getEducationType());
         discipline.setNumberOfSemesters(disciplineDTO.getNumberOfSemesters());
         discipline.setCode(disciplineDTO.getCode());
-        discipline.setName(discipline.getName());
+        discipline.setName(disciplineDTO.getName());
         discipline.setDescription(disciplineDTO.getDescription());
 
         return discipline;

@@ -48,13 +48,16 @@ public class DisciplineDTO extends Academics {
 
     public Set<DisciplineSubject> getDisciplineSubjects(Discipline discipline) {
         Set<DisciplineSubject> disciplineSubjects = new HashSet<>();
-        for (SubjectDTO subjectDTO: this.subjects) {
-            DisciplineSubject disciplineSubject = new DisciplineSubject();
-            disciplineSubject.setDiscipline(discipline);
-            disciplineSubject.setSemester(subjectDTO.getSemester());
-            disciplineSubject.setSubject(subjectDTO.convertToSubject());
-            disciplineSubjects.add(disciplineSubject);
+        if(this.subjects != null) {
+            for (SubjectDTO subjectDTO: this.subjects) {
+                DisciplineSubject disciplineSubject = new DisciplineSubject();
+                disciplineSubject.setDiscipline(discipline);
+                disciplineSubject.setSemester(subjectDTO.getSemester());
+                disciplineSubject.setSubject(subjectDTO.convertToSubject());
+                disciplineSubjects.add(disciplineSubject);
+            }
         }
+
         return disciplineSubjects;
     }
 }
