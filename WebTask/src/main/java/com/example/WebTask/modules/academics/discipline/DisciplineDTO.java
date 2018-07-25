@@ -15,8 +15,7 @@ import java.util.Set;
 
 @Data
 public class DisciplineDTO extends Academics {
-
-    private Long id;
+    
     private Department department;
     private EducationType educationType;
 
