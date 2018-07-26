@@ -26,9 +26,10 @@ import { AdminGuardService as AdminGuard } from './shared/authentication/guards/
 import { AcademicsModule } from './components/academics/academics.module';
 import { GlobalErrorHandler } from './shared/error-handling/global-error-handler';
 
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

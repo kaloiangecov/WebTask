@@ -5,6 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { UsernameExistsDirective } from '../../shared/validation/username-exists.directive';
 import { EmailExistsDirective } from '../../shared/validation/email-exists.directive';
+import { CodeExistsDirective } from '../../shared/validation/code-exists.directive';
 import { PasswordMatchDirective } from '../../shared/validation/password-match.directive';
 import { DropdownRequiredDirective } from '../../shared/validation/dropdown-required.directive';
 
@@ -18,6 +19,7 @@ import { DropdownRequiredDirective } from '../../shared/validation/dropdown-requ
   declarations: [
     UsernameExistsDirective,
     EmailExistsDirective,
+    CodeExistsDirective,
     PasswordMatchDirective,
     DropdownRequiredDirective
   ],
@@ -27,6 +29,7 @@ import { DropdownRequiredDirective } from '../../shared/validation/dropdown-requ
     AccordionModule,
     UsernameExistsDirective,
     EmailExistsDirective,
+    CodeExistsDirective,
     PasswordMatchDirective,
     DropdownRequiredDirective
   ]

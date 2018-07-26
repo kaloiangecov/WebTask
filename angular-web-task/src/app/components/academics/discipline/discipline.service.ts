@@ -1,14 +1,10 @@
-import { throwError as observableThrowError,  Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Discipline } from './discipline';
-import { DisciplineModule } from './discipline.module';
 import { HttpClient } from '@angular/common/http';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DisciplineService {
 
   private apiUrl = 'http://localhost:8080/WebTask/disciplines';

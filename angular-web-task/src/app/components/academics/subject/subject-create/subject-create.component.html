@@ -21,7 +21,8 @@
     <div class="form-group">
       <label for="code">Code</label>
       <input type="text" class="form-control" id="code" placeholder="code"
-             [(ngModel)]="subject.code" name="code" required minlength="3" #code="ngModel">
+             [(ngModel)]="subject.code" name="code" required minlength="3"
+             #code="ngModel" appCodeExists>
 
       <div *ngIf="code.invalid && (code.dirty || code.touched)"
             class="alert alert-danger">
@@ -30,6 +31,9 @@
         </div>
        <div *ngIf="code.errors.minlength">
            Code must be at least 3 characters long.
+       </div>
+       <div *ngIf="code.errors?.codeExists">
+           Code already exists.
        </div>
       </div>
     </div>

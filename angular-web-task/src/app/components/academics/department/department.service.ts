@@ -1,8 +1,6 @@
-import { throwError as observableThrowError,  Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Department } from './department';
-import { DepartmentModule } from './department.module';
 import { HttpClient } from '@angular/common/http';
 
 

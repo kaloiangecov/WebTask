@@ -7,6 +7,8 @@ import { DisciplineService } from './discipline/discipline.service';
 import { DisciplineModule } from './discipline/discipline.module';
 import { SubjectService } from './subject/subject.service';
 import { SubjectModule } from './subject/subject.module';
+import { AcademicsService } from './academics.service';
+
 
 @NgModule({
   imports: [
@@ -29,7 +31,8 @@ export class AcademicsModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: AcademicsModule,
-      providers: [ FacultyService, DepartmentService, DisciplineService, SubjectService]
+      providers: [ FacultyService, DepartmentService,
+                   DisciplineService, SubjectService, AcademicsService ]
     };
   }
 }
