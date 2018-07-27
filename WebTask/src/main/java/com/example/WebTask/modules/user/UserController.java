@@ -103,7 +103,7 @@ public class UserController {
     @GetMapping(value = "/users/exists/username")
     public Boolean usernameExists(@RequestParam(name = "username") String username,
                                   @RequestParam(name = "id") long id) {
-        if (userService.usernameExists(username, id) != null) {
+        if (userService.usernameExists(username, id)) {
             return true;
         }
         return false;
@@ -112,7 +112,7 @@ public class UserController {
     @GetMapping(value = "/users/exists/email")
     public Boolean emailExists(@RequestParam(name = "email") String email,
                                @RequestParam(name = "id") long id) {
-        if (userService.emailExists(email, id) != null) {
+        if (userService.emailExists(email, id)) {
             return true;
         }
         return false;
@@ -121,18 +121,8 @@ public class UserController {
 
     private Map<String, String> setAlreadyExistsErrors(User user, Long id, Map<String, String> errors) {
 
-        if (!errors.containsKey("email")) {
-            User emailSearch = userService.emailExists(user.getEmail(), id);
-            if (emailSearch != null) {
-                errors.put("email", "Email already exists");
-            }
-        }
-        if (!errors.containsKey("username")) {
-            User usernameSearch = userService.usernameExists(user.getUsername(), id);
-            if (usernameSearch != null) {
-                errors.put("username", "Username already exists");
-            }
-        }
+        errors = ResponseGenerator.usernameExists(user, userService, errors, id);
+        errors = ResponseGenerator.emailExists(user, userService, errors, id);
 
         return errors;
     }

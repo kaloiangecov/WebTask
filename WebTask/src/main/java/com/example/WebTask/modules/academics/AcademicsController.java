@@ -18,9 +18,6 @@ public class AcademicsController {
     @GetMapping(value = "/academics/exists/code")
     public Boolean emailExists(@RequestParam(name = "code") String code,
                                @RequestParam(name = "id") long id) {
-        if (academicsService.codeExists(code, id) != null) {
-            return true;
-        }
-        return false;
+        return academicsService.codeExists(code, id);
     }
 }

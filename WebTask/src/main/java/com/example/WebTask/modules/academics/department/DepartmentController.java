@@ -1,5 +1,7 @@
 package com.example.WebTask.modules.academics.department;
 
+import com.example.WebTask.modules.academics.Academics;
+import com.example.WebTask.modules.academics.AcademicsService;
 import com.example.WebTask.validator.ResponseGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,12 +20,15 @@ import java.util.Map;
 public class DepartmentController {
 
     private DepartmentService departmentService;
+    private AcademicsService academicsService;
     private Map<String, String> errors;
     private static final int EMPTY = 0;
+    private static final long NEW_DEPARTMENT_ID = 0L;
 
     @Autowired
-    public DepartmentController(DepartmentService departmentService) {
+    public DepartmentController(DepartmentService departmentService, AcademicsService academicsService) {
         this.departmentService = departmentService;
+        this.academicsService = academicsService;
     }
 
     @GetMapping(value = "/departments")
@@ -47,6 +52,7 @@ public class DepartmentController {
         if (bindingResult.hasErrors()) {
             errors = ResponseGenerator.setErrors(bindingResult);
         }
+        errors = ResponseGenerator.codeExists(department, academicsService, errors);
         if (errors.size() != EMPTY) {
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         }
@@ -63,6 +69,7 @@ public class DepartmentController {
         if (bindingResult.hasErrors()) {
             errors = ResponseGenerator.setErrors(bindingResult);
         }
+        errors = ResponseGenerator.codeExists(department, academicsService, errors, id);
         if (errors.size() != EMPTY) {
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         }
@@ -83,4 +90,5 @@ public class DepartmentController {
 
         return departmentService.getDepartmentsPage(page, elementsPerPage, searchTerm);
     }
+
 }

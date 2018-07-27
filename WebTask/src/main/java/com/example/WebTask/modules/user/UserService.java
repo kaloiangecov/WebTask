@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = usernameExists(username, 0L);
+        User user = userRepository.findByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
@@ -123,24 +123,24 @@ public class UserService implements UserDetailsService {
         throw new Exception();
     }
 
-    public User usernameExists(String username, long id) {
+    public boolean usernameExists(String username, long id) {
         User user = userRepository.findByUsername(username);
         if (user != null && user.getId() != id) {
-            return user;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
-    public User emailExists(String email, long id) {
+    public boolean emailExists(String email, long id) {
         User user = userRepository.findByEmailContaining(email);
         if (user != null && user.getId() != id) {
-            return user;
+            return true;
         }
-        return null;
+        return false;
     }
 
 }

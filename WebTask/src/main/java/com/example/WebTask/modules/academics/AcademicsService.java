@@ -13,11 +13,11 @@ public class AcademicsService {
         this.academicsRepository = academicsRepository;
     }
 
-    public Academics codeExists(String code, long id) {
+    public boolean codeExists(String code, long id) {
         Academics academics = academicsRepository.findByCode(code);
         if (academics != null && academics.getId() != id) {
-            return academics;
+            return true;
         }
-        return null;
+        return false;
     }
 }

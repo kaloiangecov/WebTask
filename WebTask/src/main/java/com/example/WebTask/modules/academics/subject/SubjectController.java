@@ -1,5 +1,6 @@
 package com.example.WebTask.modules.academics.subject;
 
+import com.example.WebTask.modules.academics.AcademicsService;
 import com.example.WebTask.validator.ResponseGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,11 +19,14 @@ import java.util.Map;
 public class SubjectController {
 
     private SubjectService subjectService;
+    private AcademicsService academicsService;
+
     private Map<String, String> errors;
     private static final int EMPTY = 0;
 
     @Autowired
-    public SubjectController(SubjectService subjectService) {
+    public SubjectController(SubjectService subjectService, AcademicsService academicsService) {
+        this.academicsService = academicsService;
         this.subjectService = subjectService;
     }
 
@@ -47,6 +51,7 @@ public class SubjectController {
         if (bindingResult.hasErrors()) {
             errors = ResponseGenerator.setErrors(bindingResult);
         }
+        errors = ResponseGenerator.codeExists(subject, academicsService, errors);
         if (errors.size() != EMPTY) {
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         }
@@ -63,6 +68,7 @@ public class SubjectController {
         if (bindingResult.hasErrors()) {
             errors = ResponseGenerator.setErrors(bindingResult);
         }
+        errors = ResponseGenerator.codeExists(subject, academicsService, errors, id);
         if (errors.size() != EMPTY) {
             return new ResponseEntity<>(errors, HttpStatus.NOT_ACCEPTABLE);
         }

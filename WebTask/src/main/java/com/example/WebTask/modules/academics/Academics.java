@@ -1,8 +1,8 @@
 package com.example.WebTask.modules.academics;
 
+
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
