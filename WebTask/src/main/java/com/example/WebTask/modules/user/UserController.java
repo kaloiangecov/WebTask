@@ -103,19 +103,13 @@ public class UserController {
     @GetMapping(value = "/users/exists/username")
     public Boolean usernameExists(@RequestParam(name = "username") String username,
                                   @RequestParam(name = "id") long id) {
-        if (userService.usernameExists(username, id)) {
-            return true;
-        }
-        return false;
+        return userService.usernameExists(username, id);
     }
 
     @GetMapping(value = "/users/exists/email")
     public Boolean emailExists(@RequestParam(name = "email") String email,
                                @RequestParam(name = "id") long id) {
-        if (userService.emailExists(email, id)) {
-            return true;
-        }
-        return false;
+       return userService.emailExists(email, id);
     }
 
 
