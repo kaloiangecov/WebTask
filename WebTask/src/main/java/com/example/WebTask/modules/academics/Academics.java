@@ -15,7 +15,7 @@ public class Academics {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotBlank(message = "Enter faculty name")
-    @Size(min = 4, max = 30, message = "faculty name size must be between 4 and 20 characters")
+    @Size(min = 4, max = 30, message = "faculty name size must be between 4 and 30 characters")
     private String name;
     @NotBlank(message = "Enter code")
     @Column(unique=true)
