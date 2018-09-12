@@ -4,7 +4,7 @@
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" placeholder="Name"
-             [(ngModel)]="department.name" name="name" required minlength="5" #name="ngModel">
+             [(ngModel)]="department.name" name="name" required minlength="5" maxlength="30" #name="ngModel">
 
       <div *ngIf="name.invalid && (name.dirty || name.touched)"
             class="alert alert-danger">

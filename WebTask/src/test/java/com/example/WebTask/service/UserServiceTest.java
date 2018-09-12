@@ -264,9 +264,7 @@ public class UserServiceTest extends WebTaskApplicationTests {
         long id = 2;
         String username = service.findById(1L).getUsername();
 
-        User entity = service.usernameExists(username, id);
-
-        Assert.assertNotNull("failure - expected not null", entity);
+        Assert.assertTrue(service.usernameExists(username, id));
     }
 
     @Test
@@ -274,9 +272,7 @@ public class UserServiceTest extends WebTaskApplicationTests {
         long id = 1;
         String username = service.findById(1L).getUsername();
 
-        User entity = service.usernameExists(username, id);
-
-        Assert.assertNull(entity);
+        Assert.assertFalse(service.usernameExists(username, id));
     }
 
     @Test
@@ -284,9 +280,7 @@ public class UserServiceTest extends WebTaskApplicationTests {
         long id = 2;
         String email = service.findById(1L).getEmail();
 
-        User entity = service.emailExists(email, id);
-
-        Assert.assertNotNull("failure - expected not null", entity);
+        Assert.assertTrue(service.emailExists(email, id));
     }
 
     @Test
@@ -294,14 +288,12 @@ public class UserServiceTest extends WebTaskApplicationTests {
         long id = 1;
         String email = service.findById(1L).getEmail();
 
-        User entity = service.emailExists(email, id);
-
-        Assert.assertNull(entity);
+        Assert.assertFalse(service.emailExists(email, id));
     }
 
     @Test
     public void findByUsername() throws Exception {
-        User entity = service.findById(1L);
+        User entity = service.findById(3L);
         User userFound = service.findByUsername(entity.getUsername());
         Assert.assertNotNull("failure - expected not null", userFound);
     }
